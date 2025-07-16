@@ -1,0 +1,28 @@
+.sort-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: auto;
+  }
+  
+  .sort-container select,
+  .sort-container button {
+    padding: 8px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .sort-container button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    width: 200px;
+    margin-top: 0px;
+  }
+  
+  .sort-container button:hover {
+    background-color: #0056b3;
+  }
+  

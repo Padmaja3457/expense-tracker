@@ -1,0 +1,115 @@
+/* Main Hero Section - About */
+.about-section {
+    position: relative;
+    height: 70vh; /* Reduced height for better balance */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 40px;
+    background-size: 80% auto; /* Ensures image clarity */
+    background-position: center;
+    filter: brightness(1.3);
+}
+
+/* Overlay for better readability */
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+}
+
+/* Content on top of the overlay */
+.content {
+    position: relative;
+    z-index: 2;
+    max-width: 80%;
+}
+
+/* Services Section */
+.services {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.service {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 300px;
+}
+
+/* Vision & Mission Sections */
+.section {
+    text-align: center;
+    padding: 80px 20px; /* Increased padding */
+}
+/* Vision & Mission Sections */
+.vision-mission-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    padding: 40px;
+    max-width: 1600px; /* Keeps full expansion */
+    margin: 0 auto;
+}
+
+.vision-mission {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.vision-card, .mission-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1800px; /* Adjusted for a stretched layout */
+}
+
+/* Adjusted text width */
+.text-content {
+    flex: 4; /* Allows more space for text */
+    text-align: left;
+    padding-right: 60px; /* Keeps spacing between text and image */
+}
+
+/* Increased image size */
+.image-content {
+    flex: 1;
+    height: 200px; /* Increased height */
+    max-width: 500px; /* Increased width */
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: -100px; /* Further shifts the image to the right */
+}
+
+/* Ensuring vision and mission images are positioned correctly */
+.vision-card .image-content,
+.mission-card .image-content {
+    margin-left: auto;
+    margin-right: -120px; /* Pushes images more to the right */
+}
+
+
+/* Reverse order for mission section */
+.mission-card {
+    flex-direction: row-reverse;
+}
+
+.icon {
+    font-size: 2.5rem;
+    color: #007bff;
+    margin-bottom: 10px;
+}

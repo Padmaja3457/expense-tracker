@@ -1,0 +1,103 @@
+   /* Container for budget details */
+.budget-details {
+  max-width: 700px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff; 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-left: 5px solid #4CAF50; 
+}
+
+/* Heading */
+.budget-details h2 {
+  color: #2c3e50; 
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #3498db; 
+  padding-bottom: 5px;
+}
+
+.budget-details p {
+  font-size: 1.1em;
+  margin: 10px 0;
+  color: #34495e;
+}
+
+.budget-details p strong {
+  color: #e67e22; 
+  margin-right: 10px;
+}
+
+/* Category heading */
+.budget-details h3 {
+  color: #8e44ad; 
+  font-size: 1.4em;
+  margin: 20px 0 10px;
+  text-align: left;
+}
+
+/* Table styling */
+.budget-categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.budget-categories-table th,
+.budget-categories-table td {
+  padding: 12px;
+  border: 1px solid #ddd; 
+  text-align: center;
+}
+
+.budget-categories-table th {
+  background-color: #3498db; 
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.budget-categories-table td {
+  background-color: #ecf0f1; 
+  color: #2c3e50; 
+}
+
+/* Alternating row colors for better readability */
+.budget-categories-table tbody tr:nth-child(even) td {
+  background-color: #dfe6e9;
+}
+
+/* Hover effect on rows */
+.budget-categories-table tbody tr:hover td {
+  background-color: #b2bec3; 
+  transition: background-color 0.3s ease;
+}
+
+/* Specific column styling */
+.budget-categories-table td:nth-child(2) { 
+  color: #27ae60; 
+  font-weight: bold;
+}
+
+.budget-categories-table td:nth-child(3) { 
+  color: #c0392b; 
+  font-weight: bold;
+}
+
+.budget-categories-table td:nth-child(4) {
+  color: #f1c40f; 
+  font-weight: bold;
+}
+
+/* Negative remaining amount */
+.budget-categories-table td:nth-child(4):not(:empty) {
+  color: #e74c3c; 
+}
+
+/* Positive remaining amount */
+.budget-categories-table td:nth-child(4):not(:empty):where(:not(:where(:empty))) {
+  color: #2ecc71; 
+}

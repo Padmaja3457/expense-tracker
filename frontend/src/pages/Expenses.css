@@ -1,0 +1,151 @@
+.expenses-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+.expenses-title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Total Expenses */
+
+.expenses-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: #e3f2fd;
+}
+
+.total-expenses {
+  text-align: left;
+  flex: 1;
+}
+
+.total-remaining {
+  text-align: center;
+  flex: 1;
+}
+
+.allocated-budget {
+  text-align: right;
+  flex: 1;
+}
+
+
+/* Table Styles */
+.expenses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.expenses-table th,
+.expenses-table td {
+  text-align: left;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.expenses-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.expenses-table tr:hover {
+  background-color: #f5f5f5;
+}
+
+/* Align Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 15px; /* Space between Edit and Delete */
+  justify-content: center; /* Center align in table cell */
+}
+
+/* Make Edit and Delete Look Like Links */
+.edit-button,
+.delete-button {
+  background: none !important; /* Remove any background */
+  border: none; /* Remove border */
+  color: green; /* Blue color for Edit */
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0; /* Remove extra padding */
+  display: inline; /* Make sure it's inline */
+}
+
+/* Delete Button in Red */
+.delete-button {
+  color: red !important;
+   /* Ensure delete is red but no background */
+}
+
+/* Hover Effect */
+.edit-button:hover,
+.delete-button:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Add Expense Button */
+.add-expense-button {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-expense-button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .expenses-table th,
+  .expenses-table td {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .add-expense-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+.group-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.group-dropdown,
+.member-dropdown {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  min-width: 200px;
+}

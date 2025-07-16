@@ -1,0 +1,160 @@
+/* Container for the entire form */
+.budget-form-container {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 25px;
+  background-color: #f9f9f9; 
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  border: 3px solid #ff6f61; 
+}
+
+/* Form heading */
+.budget-form-container h2 {
+  text-align: center;
+  color: #2ecc71; 
+  font-size: 1.8em;
+  margin-bottom: 20px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Form styling */
+.budget-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* Label styling */
+.budget-form label {
+  display: flex;
+  flex-direction: column;
+  font-weight: bold;
+  color: #8e44ad; 
+  font-size: 1.1em;
+}
+
+/* Input styling */
+.budget-form input {
+  padding: 10px;
+  margin-top: 6px;
+  border: 2px solid #3498db; 
+  border-radius: 6px;
+  font-size: 1em;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ecf0f1; 
+  color: #2c3e50; 
+}
+
+.budget-form input:focus {
+  outline: none;
+  border-color: #e67e22;
+  box-shadow: 0 0 8px rgba(230, 126, 34, 0.4);
+}
+
+/* Category heading */
+.budget-form h3 {
+  margin: 25px 0 15px;
+  color: #f1c40f; 
+  font-size: 1.5em;
+  text-align: center;
+  background: linear-gradient(90deg, #f1c40f, #f39c12); 
+  /* -webkit-background-clip: text; */
+  -webkit-text-fill-color: transparent;
+}
+
+/* Table styling */
+.budget-categories-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #ffffff; 
+  border-radius: 8px;
+  overflow: hidden; 
+}
+
+.budget-categories-table th,
+.budget-categories-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.budget-categories-table th {
+  background-color: #9b59b6;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.budget-categories-table td {
+  background-color: #dfe6e9;
+  color: #34495e; 
+}
+
+/* Alternating row colors */
+.budget-categories-table tbody tr:nth-child(even) td {
+  background-color: #bdc3c7;
+}
+
+/* Hover effect */
+.budget-categories-table tbody tr:hover td {
+  background-color: #95a5a6; 
+  transition: background-color 0.3s ease;
+}
+
+.budget-categories-table td input {
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #1abc9c; 
+  border-radius: 4px;
+  background-color: #ecf0f1;
+  color: #2c3e50;
+}
+
+.budget-categories-table td input:focus {
+  outline: none;
+  border-color: #e74c3c; 
+  box-shadow: 0 0 6px rgba(231, 76, 60, 0.4);
+}
+
+/* Error message styling */
+.error {
+  color: #e74c3c; 
+  font-size: 0.9em;
+  margin-top: 5px;
+  font-weight: bold;
+}
+
+.total-error {
+  color: #c0392b; 
+  font-size: 1em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 15px;
+  background-color: rgba(231, 76, 60, 0.1); 
+  padding: 5px;
+  border-radius: 4px;
+}
+
+/* Submit button styling */
+.create-budget-btn {
+  padding: 12px 25px;
+  background: linear-gradient(45deg, #2ecc71, #27ae60); 
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-top: 25px;
+  align-self: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.create-budget-btn:hover {
+  background: linear-gradient(45deg, #27ae60, #219653); 
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}

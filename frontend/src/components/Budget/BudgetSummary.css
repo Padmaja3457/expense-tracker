@@ -1,0 +1,69 @@
+   .budget-summary {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .budget-summary h3 {
+    margin-bottom: 15px;
+    color: #333;
+    font-size: 1.2em;
+  }
+  
+  .summary-items {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .summary-item {
+    flex: 1 1 200px;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .summary-item strong {
+    color: #495057;
+  }
+  
+  .amount {
+    font-weight: bold;
+  }
+  
+  .amount.allocated {
+    color: #28a745; /* Green for allocated */
+  }
+  
+  .amount.expenses {
+    color: #dc3545; /* Red for expenses */
+  }
+  
+  .amount.remaining.positive {
+    color: #28a745; /* Green for positive remaining */
+  }
+  
+  .amount.remaining.negative {
+    color: #dc3545; /* Red for negative remaining */
+  }
+  
+  .overspending-alert {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .budget-summary.no-data {
+    text-align: center;
+    color: #721c24;
+  }
