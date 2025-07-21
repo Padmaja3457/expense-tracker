@@ -40,10 +40,10 @@ A full-featured web-based expense tracking app built using the MERN stack (Mongo
 ![Budget Form](screenshots/budget.png)
 
 ### 📊 Analytics  
-![Analytics](screenshots/analytics.png)
+![Analytics](screenshots/Analytics.png)
 
 ### 💰 Settings
-![Settings Page](screenshots/settings.png)
+![Settings Page](screenshots/Settings.png)
 
 
 ---
