@@ -93,27 +93,30 @@ A full-featured web-based expense tracking app built using the MERN stack (Mongo
 ```bash
 git clone https://github.com/Padmaja3457/expense-tracker.git
 cd expense-tracker
+```
 ## 2. Install dependencies:
-Backend:
+### Backend:
 
 ```bash
 cd server
 npm install
-
-Frontend:
+```
+### Frontend:
 
 ```bash
 cd client
 npm install
+```
+## 3. Run the app:
 
-3. Run the app:
-
-Backend:
+### Backend:
 
 ```bash
 npm run start
+```
 
-Frontend:
+### Frontend:
 
 ```bash
 npm start
+```
