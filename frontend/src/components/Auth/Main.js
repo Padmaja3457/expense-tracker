@@ -125,41 +125,141 @@ const Register = () => {
     password: "",
     confirmPassword: "",
   });
-  const [error, setError] = useState("");
+  const [otp, setOtp] = useState("");
+  const [step, setStep] = useState(1);
+  const [errors, setErrors] = useState({
+    email: "",
+    password: "",
+    confirmPassword: "",
+    general: "",
+  });
+
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+  const validatePassword = (password) => {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+  };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+
     setFormData({ ...formData, [name]: value });
+
+    // Live validation
+    if (name === "email") {
+      setErrors((prev) => ({
+        ...prev,
+        email: validateEmail(value) ? "" : "Invalid email format",
+      }));
+    }
+
+    if (name === "password") {
+      setErrors((prev) => ({
+        ...prev,
+        password: validatePassword(value)
+          ? ""
+          : "Password must be at least 8 characters with uppercase, lowercase, and a number",
+      }));
+    }
+
+    if (name === "confirmPassword") {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword:
+          value === formData.password ? "" : "Passwords do not match",
+      }));
+    }
+
+    if (name === "password" || name === "confirmPassword") {
+      setErrors((prev) => ({
+        ...prev,
+        confirmPassword:
+          name === "password" && formData.confirmPassword
+            ? formData.confirmPassword === value
+              ? ""
+              : "Passwords do not match"
+            : prev.confirmPassword,
+      }));
+    }
   };
 
-  const handleSubmit = async (e) => {
+
+  const handleInitialSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+   setErrors((prev) => ({ ...prev, general: "" }));// Clear previous errors
+    
+const { username, email, password, confirmPassword } = formData;
 
-    if (formData.password !== formData.confirmPassword) {
-      setError("Passwords do not match!");
+    if (!username || !email || !password || !confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        general: "All fields are required",
+      }));
       return;
     }
 
-    if (!formData.username || !formData.email || !formData.password || !formData.confirmPassword) {
-      setError("All fields are required.");
+    if (errors.email || errors.password || errors.confirmPassword) {
+      setErrors((prev) => ({
+        ...prev,
+        general: "Please fix the above errors before submitting.",
+      }));
       return;
     }
-
-    try {
-      const response = await fetch("http://localhost:5000/register", {
+     try {
+      const res = await fetch("http://localhost:5000/send-registration-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email }),
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        alert(data.message);
+        setStep(2);
+      } else {
+        setErrors((prev) => ({ ...prev, general: data.message || "Failed to send OTP" }));
+      }
+    } catch (err) {
+      setErrors((prev) => ({ ...prev, general: "Failed to connect to server" }));
+    }
+  };
+
+  const handleVerifyAndRegister = async (e) => {
+    e.preventDefault();
+    setErrors((prev) => ({ ...prev, general: "" }));
+    const { username, email, password, confirmPassword } = formData;
+
+
+    if (!otp) {
+      setErrors((prev) => ({ ...prev, general: "OTP is required" }));
+      return;
+    }
+   console.log("📤 Sending OTP verification payload:", { username, email, password, otp });
+
+    try {
+      const res = await fetch("http://localhost:5000/verify-registration-otp", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...formData, otp }),
       });
 
-      const data = await response.json();
+      const data = await res.json();
       alert(data.message);
-      if (response.ok) {
+      if (res.ok) {
         navigate("/login");
       }
+      else {
+        setErrors((prev) => ({ ...prev, general: data.message || "Registration failed" }));
+      }
     } catch (error) {
-      setError("An error occurred. Please try again.");
+      setErrors((prev) => ({
+        ...prev,
+        general: "An error occurred. Please try again.",
+      }));
     }
   };
 
@@ -170,7 +270,8 @@ const Register = () => {
       </div>
       <div className="form-content">
         <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
+        {step === 1 ? (
+          <form onSubmit={handleInitialSubmit}>
           <div className="form-group">
             <label>Username</label>
             <input
@@ -190,6 +291,7 @@ const Register = () => {
               onChange={handleInputChange}
               required
             />
+            {errors.email && <div className="error-message">{errors.email}</div>}
           </div>
           <div className="form-group">
             <label>Password</label>
@@ -200,6 +302,7 @@ const Register = () => {
               onChange={handleInputChange}
               required
             />
+            {errors.password && <div className="error-message">{errors.password}</div>}
           </div>
           <div className="form-group">
             <label>Confirm Password</label>
@@ -210,10 +313,29 @@ const Register = () => {
               onChange={handleInputChange}
               required
             />
+            {errors.confirmPassword && (
+              <div className="error-message">{errors.confirmPassword}</div>
+            )}
           </div>
-          {error && <div className="error-message">{error}</div>}
-          <button type="submit" className="button">Register</button>
+            {errors.general && <div className="error-message">{errors.general}</div>}
+          <button type="submit" className="button">Send OTP</button>
         </form>
+         ) : (
+           <form onSubmit={handleVerifyAndRegister}>
+            <div className="form-group">
+              <label>Enter OTP</label>
+              <input
+                type="text"
+                name="otp"
+                value={otp}
+                onChange={(e) => setOtp(e.target.value)}
+                required
+              />
+            </div>
+            {errors.general && <div className="error-message">{errors.general}</div>}
+            <button type="submit" className="button">Verify & Register</button>
+          </form>
+        )}
         <div className="alternative-actions">
           Already have an account?{" "}
           <span onClick={() => navigate("/login")} className="text-link">

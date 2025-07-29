@@ -14,6 +14,8 @@ const Expense = require("./models/Expense"); // ✅ Import Budget Routes
 //const emailService = require("./utils/emailService"); // Use correct filename
 const Group=require("./models/Group");
 const Notification=require("./models/Notification");
+const Otp = require("./models/Otp"); 
+
 
 
 
@@ -602,6 +604,7 @@ app.post("/register-group", async (req, res) => {
 // 🔹 Forgot Password - Send OTP
 app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
+  
   try {
     const user = await User.findOne({ email });
     if (!user) return res.status(404).json({ message: "User not found" });
@@ -652,6 +655,85 @@ app.post("/reset-password", async (req, res) => {
     res.status(500).json({ message: "Error resetting password", error });
   }
 });
+app.post("/send-registration-otp", async (req, res) => {
+  const { email } = req.body;
+  console.log("📩 Incoming request to send OTP to:", email);
+
+  try {
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    const otpCode = Math.floor(100000 + Math.random() * 900000).toString();
+    console.log("🔐 Generated OTP:", otpCode);
+
+    // Remove any existing OTP for the same email
+    await Otp.deleteMany({ email });
+
+    // Save new OTP to the database
+    const otpEntry = new Otp({
+      email,
+      otp: otpCode,
+      expiresAt: new Date(Date.now() + 10 * 60 * 1000), // 10 mins from now
+    });
+    await otpEntry.save();
+
+    console.log("✉️ Transporter config:", process.env.EMAIL_USER);
+
+    await transporter.sendMail({
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Your Registration OTP",
+      text: `Your OTP is: ${otpCode}. It expires in 10 minutes.`,
+    });
+
+    res.status(200).json({ message: "OTP sent successfully" });
+  } catch (error) {
+    console.error("❌ Error sending OTP:", error);
+    res.status(500).json({ message: "Error sending OTP", error });
+  }
+});
+
+app.post("/verify-registration-otp", async (req, res) => {
+  const { username, email, password, otp } = req.body;
+  console.log("🔎 Incoming OTP verification for:", email);
+  console.log("📥 Received OTP:", otp);
+
+  try {
+    // ✅ Check if email is already used (just to be safe)
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      console.log("❌ Email already registered");
+      return res.status(400).json({ message: "Email already registered" });
+    }
+
+    // ✅ Look up OTP from Otp collection
+    const userOtp = await Otp.findOne({ email });
+    console.log("📦 OTP record found:", userOtp);
+
+    if (!userOtp || userOtp.otp !== otp || new Date() > userOtp.expiresAt) {
+      console.log("❌ Invalid or expired OTP");
+      return res.status(400).json({ message: "Invalid or expired OTP" });
+    }
+
+    // ✅ Create new user
+    const hashedPassword = await bcrypt.hash(password, 10);
+    const newUser = new User({ username, email, password: hashedPassword });
+    await newUser.save();
+
+    // ✅ Delete OTP from DB
+    await Otp.deleteOne({ email });
+    console.log("✅ Registration complete for:", email);
+
+    res.status(201).json({ message: "Registration successful!" });
+  } catch (error) {
+    console.error("❌ Error verifying OTP:", error);
+    res.status(500).json({ message: "Error verifying OTP", error });
+  }
+});
+
+
 
 // 🔹 Accept Invite & Complete Registration
 app.post("/complete-registration", async (req, res) => {

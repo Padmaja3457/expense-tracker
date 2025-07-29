@@ -228,7 +228,8 @@ const compareBarData = {
           />
           Expense Over Time
         </label>
-        <label>
+        {userGroups.length > 0 && groupMembers.length > 1 && (
+  <label>
     <input
       type="radio"
       value="compareMembers"
@@ -237,6 +238,7 @@ const compareBarData = {
     />
     Compare Members
   </label>
+)}
 
       </div>
         {/* Group Selector */}

@@ -18,6 +18,8 @@ const Home = () => {
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+  const featuresRef = useRef(null);
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -192,7 +194,16 @@ const Home = () => {
                 It takes seconds to record daily transactions. Put them into clear and visualized categories such as 
                 <strong> Expense</strong>: Food, Shopping or <strong>Income</strong>: Salary, Gift.
               </p>
-              <button className="btn btn-primary" style={{ fontSize: "1.4rem", padding: "15px 30px" }}>Read More</button>
+             <button 
+            className="btn btn-primary" 
+            style={{ fontSize: "1.4rem", padding: "15px 30px" }}
+             onClick={() => {
+              featuresRef.current?.scrollIntoView({ behavior: 'smooth' });
+            }}
+>
+  Read More
+</button>
+
             </div>
           </section>
 
@@ -246,7 +257,7 @@ const Home = () => {
           </section>
 
           {/* Features Section */}
-          <section className="container-side-by-side">
+          <section className="container-side-by-side" ref={featuresRef} >
             <div className="features">
               <h2>We Offer a Variety of Features</h2>
               <div className="features-row">

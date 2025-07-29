@@ -40,21 +40,37 @@ const CreateBudgetForm = ({ onBudgetUpdated, budget }) => {
   }, [budget]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    const sanitizedValue = value === "" ? "" : Math.max(0, Number(value)).toString();
+  const { name, value } = e.target;
 
-    if (name in formData.categories) {
-      setFormData((prev) => ({
-        ...prev,
-        categories: { ...prev.categories, [name]: sanitizedValue },
-      }));
+  let updatedFormData = { ...formData };
+
+  if (name in formData.categories) {
+    updatedFormData.categories[name] = value === "" ? "" : Math.max(0, Number(value)).toString();
+  } else if (name === "monthlyIncome") {
+    updatedFormData[name] = value === "" ? "" : Math.max(0, Number(value)).toString();
+  } else {
+    updatedFormData[name] = value;
+  }
+
+  setFormData(updatedFormData);
+
+  // ✅ Live date validation with updated values
+  if ((name === "endDate" || name === "startDate") && updatedFormData.startDate && updatedFormData.endDate) {
+    const start = new Date(updatedFormData.startDate);
+    const end = new Date(updatedFormData.endDate);
+
+    if (end < start) {
+      setErrors((prev) => ({ ...prev, endDate: "End date must be after the start date" }));
     } else {
-      setFormData((prev) => ({
-        ...prev,
-        [name]: name === "monthlyIncome" ? sanitizedValue : value,
-      }));
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors.endDate;
+        return newErrors;
+      });
     }
-  };
+  }
+};
+
 
   const validateForm = () => {
     const newErrors = {};
