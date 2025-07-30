@@ -49,7 +49,7 @@ useEffect(() => {
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get('http://localhost:5000/api/user/profile', {
+      const response = await axios.get('https://et-backend-7br8.onrender.com/api/user/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -109,7 +109,7 @@ useEffect(() => {
 
       console.log("🟢 Fetching Expenses with params:", params);
 
-      const response = await axios.get("http://localhost:5000/api/expenses", {
+      const response = await axios.get("https://et-backend-7br8.onrender.com/api/expenses", {
         headers: { Authorization: `Bearer ${token}` },
         params,
       });
@@ -185,7 +185,7 @@ const handleGroupChange = (groupId) => {
   
     try {
       const token = localStorage.getItem("token");
-      const response=await axios.post("http://localhost:5000/api/expenses", updatedExpense, {
+      const response=await axios.post("https://et-backend-7br8.onrender.com/api/expenses", updatedExpense, {
         headers: { Authorization: `Bearer ${token}` },
       });
       const savedExpense = response.data; 

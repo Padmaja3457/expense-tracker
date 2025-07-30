@@ -8,7 +8,7 @@ const Notifications = () => {
   useEffect(() => {
     const fetchNotifications = async () => {
       const token = localStorage.getItem("token");
-      const res = await axios.get("http://localhost:5000/api/notifications", {
+      const res = await axios.get("https://et-backend-7br8.onrender.com/api/notifications", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setNotifications(res.data);

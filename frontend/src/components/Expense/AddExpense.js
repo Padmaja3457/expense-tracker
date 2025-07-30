@@ -67,7 +67,7 @@ const AddExpense = ({ onClose, onAddExpense, selectedGroup }) => {
 
       console.log('Submitting expense:', expenseData);
 
-      const response = await axios.post('http://localhost:5000/api/expenses', expenseData, {
+      const response = await axios.post('https://et-backend-7br8.onrender.com/api/expenses', expenseData, {
         headers: { 
           Authorization: `Bearer ${localStorage.getItem('token')}`,
           'Content-Type': 'application/json'

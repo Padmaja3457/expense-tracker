@@ -42,7 +42,7 @@ const GroupRegistration = () => {
 
   const handleRegisterClick = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/register-group", {
+      const response = await axios.post("https://et-backend-7br8.onrender.com/register-group", {
         primaryUser,
         members,
       });

@@ -54,7 +54,7 @@ const EditExpense = ({ expense, onClose, onUpdateExpense }) => {
     try {
       const token = localStorage.getItem("token"); // Get user token
       const response = await axios.put(
-        `http://localhost:5000/api/expenses/${expense._id}`,
+        `https://et-backend-7br8.onrender.com/api/expenses/${expense._id}`,
         formData,
         { headers: { Authorization: `Bearer ${token}` } } // Fix missing Bearer
       );

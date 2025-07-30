@@ -12,7 +12,7 @@ const ForgotPassword = () => {
 
   const handleSendOtp = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/send-otp", { email });
+      const response = await axios.post("https://et-backend-7br8.onrender.com/send-otp", { email });
       alert(response.data.message);
       setStep(2);
     } catch (error) {
@@ -22,7 +22,7 @@ const ForgotPassword = () => {
 
   const handleVerifyOtp = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/verify-otp", { email, otp });
+      const response = await axios.post("https://et-backend-7br8.onrender.com/verify-otp", { email, otp });
       alert(response.data.message);
       setStep(3);
     } catch (error) {
@@ -32,7 +32,7 @@ const ForgotPassword = () => {
 
   const handleResetPassword = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/reset-password", { email, newPassword });
+      const response = await axios.post("https://et-backend-7br8.onrender.com/reset-password", { email, newPassword });
       alert(response.data.message);
       navigate("/login");
     } catch (error) {

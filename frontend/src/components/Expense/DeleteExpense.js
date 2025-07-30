@@ -7,7 +7,7 @@ const DeleteExpense = ({ expense, onConfirm, onCancel }) => {
     try {
       const token = localStorage.getItem("token");
       console.log("Deleting Expense ID:", expense._id); // Log the expense ID
-      const response = await axios.delete(`http://localhost:5000/api/expenses/${expense._id}`, {
+      const response = await axios.delete(`https://et-backend-7br8.onrender.com/api/expenses/${expense._id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 

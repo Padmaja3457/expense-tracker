@@ -21,7 +21,7 @@ const Analytics = () => {
     const fetchProfileData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const res = await axios.get('http://localhost:5000/api/user/profile', {
+        const res = await axios.get('https://et-backend-7br8.onrender.com/api/user/profile', {
           headers: { Authorization: `Bearer ${token}` },
         });
 
@@ -63,7 +63,7 @@ const Analytics = () => {
           params.userId = selectedMember;
         }
 
-        const response = await axios.get('http://localhost:5000/api/expenses', {
+        const response = await axios.get('https://et-backend-7br8.onrender.com/api/expenses', {
           headers: { Authorization: `Bearer ${token}` },
           params,
         });

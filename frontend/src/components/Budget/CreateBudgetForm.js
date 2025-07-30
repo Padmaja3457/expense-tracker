@@ -131,8 +131,8 @@ const CreateBudgetForm = ({ onBudgetUpdated, budget }) => {
 
     try {
       const url = budget
-        ? `http://localhost:5000/api/budgets/${budget._id}`
-        : "http://localhost:5000/api/budgets";
+        ? `https://et-backend-7br8.onrender.com/api/budgets/${budget._id}`
+        : "https://et-backend-7br8.onrender.com/api/budgets";
       const method = budget ? "PUT" : "POST";
 
       const response = await fetch(url, {

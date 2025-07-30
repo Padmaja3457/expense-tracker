@@ -19,7 +19,7 @@ const Profile = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/user/profile", {
+        const response = await axios.get("https://et-backend-7br8.onrender.com/api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
 

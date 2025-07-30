@@ -23,7 +23,7 @@ const Dashboard = () => {
   const fetchExpenses = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/expenses", {
+      const response = await axios.get("https://et-backend-7br8.onrender.com/api/expenses", {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -47,7 +47,7 @@ const Dashboard = () => {
   const fetchBudgets = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("http://localhost:5000/api/budgets", {
+      const response = await axios.get("https://et-backend-7br8.onrender.com/api/budgets", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

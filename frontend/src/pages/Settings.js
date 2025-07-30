@@ -22,7 +22,7 @@ const Settings = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5000/api/user/profile", {
+        const response = await axios.get("https://et-backend-7br8.onrender.com/api/user/profile", {
           headers: { Authorization: `Bearer ${token}` },
         });
        
@@ -71,7 +71,7 @@ const handleChangePassword = async (e) => {
 
   try {
     const response = await axios.post(
-      "http://localhost:5000/api/user/change-password",
+      "https://et-backend-7br8.onrender.com/api/user/change-password",
       { currentPassword, newPassword },
       { headers } // ✅ Include token
     );
@@ -92,7 +92,7 @@ const handleEditProfile = async (e) => {
   e.preventDefault();
   try {
     const response = await axios.put(
-      "http://localhost:5000/api/user/edit-profile",
+      "https://et-backend-7br8.onrender.com/api/user/edit-profile",
       profileData,
       { headers } // ✅ Include token
     );
@@ -109,7 +109,7 @@ const handleEditProfile = async (e) => {
 const handleDeleteAccount = async () => {
   if (window.confirm("Are you sure you want to delete your account? This action is irreversible.")) {
     try {
-      await axios.delete("http://localhost:5000/api/user/delete-account", { headers }); // ✅ Include token
+      await axios.delete("https://et-backend-7br8.onrender.com/api/user/delete-account", { headers }); // ✅ Include token
       alert("Your account has been deleted.");
       window.location.href = "/";
     } catch (error) {

@@ -30,7 +30,7 @@ const Login = () => {
       localStorage.removeItem("username");
       localStorage.removeItem("email");
       localStorage.removeItem("groupId"); // If you store groupId
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("https://et-backend-7br8.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(credentials),
@@ -210,7 +210,7 @@ const { username, email, password, confirmPassword } = formData;
       return;
     }
      try {
-      const res = await fetch("http://localhost:5000/send-registration-otp", {
+      const res = await fetch("https://et-backend-7br8.onrender.com/send-registration-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
@@ -241,7 +241,7 @@ const { username, email, password, confirmPassword } = formData;
    console.log("📤 Sending OTP verification payload:", { username, email, password, otp });
 
     try {
-      const res = await fetch("http://localhost:5000/verify-registration-otp", {
+      const res = await fetch("https://et-backend-7br8.onrender.com/verify-registration-otp", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ...formData, otp }),

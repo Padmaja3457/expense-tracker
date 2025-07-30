@@ -24,7 +24,7 @@ const BudgetTable = () => {
         return;
       }
   
-      const response = await fetch("http://localhost:5000/api/user/profile", { // ✅ Use your existing endpoint
+      const response = await fetch("https://et-backend-7br8.onrender.com/api/user/profile", { // ✅ Use your existing endpoint
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -69,7 +69,7 @@ const BudgetTable = () => {
         const storedBudget = localStorage.getItem("selectedBudget");
         const selectedBudgetId = storedBudget ? JSON.parse(storedBudget)._id : null;
 
-        const response = await fetch(`http://localhost:5000/api/budgets?selectedBudgetId=${selectedBudgetId}`, {
+        const response = await fetch(`https://et-backend-7br8.onrender.com/api/budgets?selectedBudgetId=${selectedBudgetId}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -140,7 +140,7 @@ const handleDetails = (id) => {
         console.log("🛑 Deleting Budget ID:", id);
         console.log("🔹 Sending Token:", token); // Debugging
 
-        const response = await fetch(`http://localhost:5000/api/budgets/${id}`, {
+        const response = await fetch(`https://et-backend-7br8.onrender.com/api/budgets/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
